@@ -1,0 +1,12 @@
+@mixin noMarginPadding() {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  @include noMarginPadding();
+}
+
+.app-container {
+  border: 1px solid red;
+}
