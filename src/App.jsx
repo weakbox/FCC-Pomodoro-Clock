@@ -32,8 +32,8 @@ function App() {
 
   return (
     <>
-      <Card>
-        <Card.Header id="break-label">Break Length</Card.Header>
+      <Card className="shadow-sm mb-4">
+        <Card.Header id="break-label">Break Length 🍵</Card.Header>
         <Card.Body className="d-flex flex-column justify-content-between align-items-center">
           <Card.Subtitle className="text-muted mb-2">How long will the break be?</Card.Subtitle>
           <div className="d-flex flex-row justify-content-between align-items-center">
@@ -43,8 +43,8 @@ function App() {
           </div>
         </Card.Body>
       </Card>
-      <Card>
-        <Card.Header id="session-label">Session Length</Card.Header>
+      <Card className="shadow-sm mb-4">
+        <Card.Header id="session-label">Session Length 💻</Card.Header>
         <Card.Body className="d-flex flex-column justify-content-between align-items-center">
           <Card.Subtitle className="text-muted mb-2">How long will the work be?</Card.Subtitle>
           <div className="d-flex flex-row justify-content-between align-items-center">
@@ -55,7 +55,7 @@ function App() {
         </Card.Body>
       </Card>
       <Card>
-        <Card.Header id="timer-label">Pomodoro Session</Card.Header>
+        <Card.Header id="shadow-sm timer-label">Pomodoro Session 🍅</Card.Header>
         <Card.Body className="d-flex flex-column justify-content-between align-items-center">
           <Card.Subtitle className="text-muted mb-2">This many minutes until a break!</Card.Subtitle>
           <h1 id="time-left" className="mb-2">{sessionLength}:00</h1>
