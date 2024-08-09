@@ -1,12 +1,14 @@
-@mixin noMarginPadding() {
+@mixin no-margin-padding() {
   margin: 0;
   padding: 0;
 }
 
-* {
-  @include noMarginPadding();
+@mixin flex-columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.app-container {
-  border: 1px solid red;
-}
+// Variables:
+$border-radius: 6px;
