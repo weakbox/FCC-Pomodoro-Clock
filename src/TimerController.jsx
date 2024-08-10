@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 
 const MAX_TIME = 60;
