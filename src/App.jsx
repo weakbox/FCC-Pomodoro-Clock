@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TimerController from './TimerController';
@@ -6,51 +6,49 @@ import TimerDisplay from './TimerDisplay';
 
 const defaultSessionLength = 25;
 const defaultBreakLength = 5;
+const intervalLength = 1000;
 
 function App() {
   const [sessionLength, setSessionLength] = useState(defaultSessionLength);
   const [breakLength, setBreakLength] = useState(defaultBreakLength);
-  const [intervalId, setIntervalId] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
 
+  const timerRef = useRef(null);
+
   const handleReset = () => {
-    if (remainingTime) { stopTimer(); }
-    setBreakLength(5);
-    setSessionLength(25);
+    if (remainingTime) stopTimer();
+    setSessionLength(defaultSessionLength);
+    setBreakLength(defaultBreakLength);
   };
 
   const toggleTimer = () => {
-    if (intervalId) { pauseTimer(); } 
-    else { startTimer(); }
+    if (remainingTime) pauseTimer(); 
+    else startTimer();
   };
 
   const startTimer = () => {
-    if (!remainingTime) {
-      setRemainingTime(sessionLength * 60);
-    }
-    setIntervalId(setInterval(handleTimer, 100));
+    if (!remainingTime) setRemainingTime(sessionLength * 60);
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(handleTimer, intervalLength);
   };
 
-  const pauseTimer = () => {
-    clearInterval(intervalId);
-    setIntervalId(null);
-  };
-
+  const pauseTimer = () => clearInterval(timerRef.current);
+  
   const handleTimer = () => {
     setRemainingTime((prevTime) => {
-      console.log(prevTime)
+      console.log("prevTime", prevTime);
       if (prevTime <= 0) {
-        playAlarmSound();
+        // playAlarmSound();
         stopTimer();
-        return;
+        return 0;
       }
       return prevTime - 1;
     });
   };
 
   const stopTimer = () => {
-    clearInterval(intervalId);
-    setIntervalId(null);
+    console.log("Stop the timer!");
+    clearInterval(timerRef.current);
     setRemainingTime(null);
   };
 
@@ -69,7 +67,7 @@ function App() {
         setTimeLength={ setBreakLength } 
       />
       <TimerDisplay 
-        time={ remainingTime ? remainingTime : sessionLength * 60 } 
+        time={ remainingTime !== null ? remainingTime : sessionLength * 60 } 
         startStop={ toggleTimer }
         reset={ handleReset }
       />

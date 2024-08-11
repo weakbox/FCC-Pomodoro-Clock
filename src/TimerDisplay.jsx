@@ -1,9 +1,9 @@
 import { Button, Card } from 'react-bootstrap';
 
 const convertToTimeFormat = (timeInSeconds) => {
+  console.log("timeInSeconds:", timeInSeconds);
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = timeInSeconds % 60;
-
   return `${minutes.toString().padStart(2, 0)}:${seconds.toString().padStart(2, 0)}`;
 };
 
