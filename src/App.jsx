@@ -4,7 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import TimerController from './TimerController';
 import TimerDisplay from './TimerDisplay';
 
+const defaultSessionLength = 25;
+const defaultBreakLength = 5;
+
 function App() {
+  const [sessionLength, setSessionLength] = useState(defaultSessionLength);
+  const [breakLength, setBreakLength] = useState(defaultBreakLength);
   const [intervalId, setIntervalId] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
 
@@ -53,8 +58,8 @@ function App() {
 
   return (
     <>
-      <TimerController type="session" defaultLength="25" />
-      <TimerController type="break" defaultLength="5" />
+      <TimerController type="session" timeLength={sessionLength} setTimeLength={setSessionLength} />
+      <TimerController type="break" timeLength={breakLength} setTimeLength={setBreakLength} />
       <TimerDisplay />
     </>
   );

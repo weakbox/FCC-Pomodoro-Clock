@@ -4,8 +4,11 @@ import { Button, Card } from 'react-bootstrap';
 const MAX_TIME = 60;
 const MIN_TIME = 1;
 
-function TimerController({type = "session", defaultLength = "5"}) {
-  const [timeLength, setTimeLength] = useState(parseInt(defaultLength));
+const printLabel = (type) => type === "session" 
+    ? "Session Length 💻" 
+    : "Break Length 🍵";
+
+function TimerController({ type, timeLength, setTimeLength }) {
   
   // Always use a function to set state when new state depends on previous state!
   const decrement = () => {
@@ -20,16 +23,6 @@ function TimerController({type = "session", defaultLength = "5"}) {
       ? prevTimeLength + 1 
       : prevTimeLength
     );
-  };
-
-  const printLabel = (type) => {
-    switch (type) {
-      case "session":
-        return "Session Length 💻";
-      case "break":
-        return "Break Length 🍵";
-      default:
-    }
   };
 
   return (
