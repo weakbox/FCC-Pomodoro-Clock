@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Button, Card } from 'react-bootstrap';
 
 const MAX_TIME = 60;

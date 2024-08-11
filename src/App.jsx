@@ -58,9 +58,21 @@ function App() {
 
   return (
     <>
-      <TimerController type="session" timeLength={sessionLength} setTimeLength={setSessionLength} />
-      <TimerController type="break" timeLength={breakLength} setTimeLength={setBreakLength} />
-      <TimerDisplay />
+      <TimerController 
+        type="session" 
+        timeLength={ sessionLength } 
+        setTimeLength={ setSessionLength } 
+      />
+      <TimerController 
+        type="break" 
+        timeLength={ breakLength } 
+        setTimeLength={ setBreakLength } 
+      />
+      <TimerDisplay 
+        time={ remainingTime ? remainingTime : sessionLength * 60 } 
+        startStop={ toggleTimer }
+        reset={ handleReset }
+      />
     </>
   );
 }
